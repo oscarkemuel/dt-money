@@ -1,22 +1,9 @@
-import { useEffect, useState } from "react";
-import { api } from "../../services/api";
+import { useTransactions } from "../../hooks/useTransactions";
+import { numberToRealString } from "../../utils/Numbers";
 import { Container } from "./styles";
 
-type Transaction = {
-  id: number;
-  title: string;
-  amount: number;
-  type: 'deposit' | 'withdraw';
-  category: string;
-  created_at: string;
-}
-
 export function TransactionsTable() {
-  const [transactions, setTransactions] = useState<Transaction[]>([]);
-
-  useEffect(() => {
-    api.get('/transactions').then(response => setTransactions(response.data.transactions));
-  }, [])
+  const {transactions} = useTransactions();
 
   return (
     <Container>
@@ -31,14 +18,10 @@ export function TransactionsTable() {
         </thead>
 
         <tbody>
-          
           {transactions.map(transaction => {
             const date = new Intl.DateTimeFormat('pt-BR').format(new Date(transaction.created_at));
 
-            const amount = new Intl.NumberFormat('pt-BR', {
-              style: 'currency',
-              currency: 'BRL'
-            }).format(transaction.amount);
+            const amount = numberToRealString(transaction.amount);
             
             return (
               <tr key={transaction.id}>
