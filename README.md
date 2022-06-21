@@ -1,6 +1,8 @@
 # dt money
 
 <img src="https://github.com/oscarkemuel/dt-money/blob/main/src/assets/printscreen1.png?raw=true" >
+<img src="https://github.com/oscarkemuel/dt-money/blob/main/src/assets/printscreen2.png?raw=true" >
+
 
 > Projeto desenvolvido durante o curso de especialização ReactJS da @Rocketseat
 
